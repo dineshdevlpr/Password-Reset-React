@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 
-export default function Reset(props) {
+export default function Reset() {
 
 
     const [password, setPassword] = useState("");
