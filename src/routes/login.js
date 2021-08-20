@@ -1,22 +1,50 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useHistory } from "react-router-dom";
+
 
 export default function Login() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const history = useHistory();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const fetchData = await fetch("https://password--reset.herokuapp.com/login", {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+          email,
+          password
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (fetchData.status === 200) {
+        alert("Successfully Logged In")
+        history.push("/success")
+    }else {
+        console.error("Error Occured");
+    }
+    }
+
+
     return (
         <>
             <div className="container">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6">
                         <div className="col-md-12">
-                            <form className="form" action="" method="post">
+                            <form className="form" action="" method="post" onSubmit={handleSubmit}>
                                 <h3 className="text-center text-info">Login</h3>
                                 <div className="form-group">
-                                    <label for="username" className="text-info">Username:</label><br/>
-                                    <input type="text" name="username" id="username" className="form-control" />
+                                    <label for="email" className="text-info">Email:</label><br/>
+                                    <input type="email" id="email" name="email" required onChange={(e) => setEmail(e.target.value)} className="form-control" />
                                 </div>
                                 <div className="form-group">
                                     <label for="password" className="text-info">Password:</label><br/>
-                                    <input type="text" name="password" id="password" className="form-control" />
+                                    <input type="password" name="password" id="password" required onChange={(e) => setPassword(e.target.value)} className="form-control" />
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" name="submit" className="btn btn-info btn-md" value="submit" />
