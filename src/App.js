@@ -17,11 +17,11 @@ function App() {
       <>
         
           <Switch>
-            <Route path="/" component={Register} exact ></Route>
-            <Route path="/login" component={Login} exact ></Route>
-            <Route path="/forgot" component={Forgot} exact ></Route>
-            <Route path="/reset/:randomString" component={Reset} exact ></Route>
-            <Route path="/success" component={Success} exact ></Route>
+            <Route path="/" component={Register} exact={true} ></Route>
+            <Route path="/login" component={Login} exact={true} ></Route>
+            <Route path="/forgot" component={Forgot} exact={true} ></Route>
+            <Route path="/reset/:randomString" component={Reset} exact={true} ></Route>
+            <Route path="/success" component={Success} exact={true} ></Route>
           </Switch>
         
       </>
